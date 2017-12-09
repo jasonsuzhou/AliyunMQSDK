@@ -42,7 +42,7 @@
 ```
 ## 使用向导
 
-- 继承如下java类,实现process方法就可以了，这个方法的message参数就是从阿流云消息队列获得的消息
+- 继承如下java类,实现process方法就可以了，这个方法的message参数就是从阿里云消息队列获得的消息
 
 ```java
 com.mh.aliyun.mq.sdk.processor.AbstractMessageProcessor
@@ -121,3 +121,6 @@ com.mh.aliyun.mq.sdk.setup.AliyunMQManager
 		AliyunMQManager.end();
 	}
 ```
+
+## TODO
+- 可以单独暂停某个监听器线程不去接收消息
