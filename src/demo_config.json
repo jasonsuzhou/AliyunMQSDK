@@ -1,0 +1,19 @@
+{
+  "accessKey":"mandatory",
+  "secretKey":"mandatory",
+  "accessUrl":"http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet",
+  "logPath":"d:/logs",
+  "logFileMaxIndex":10,
+  "logLevel":"WARN",
+  "topics":[
+    {"id":"mandatory","name":"mandatory",
+    "producer":{"id":"mandatory","name":"mandatory","retryTimes":3,"sendMsgTimeoutMillis":10000},
+    "consumers":{"id":"mandatory","name":"mandatory","tag":"*"}
+    }
+  ],
+  "listeners":[
+    {"id":"mandatory","consumerRef":"mandatory","initThreads":2,"initStatus":"start","serviceClass":"com.mh.aliyun.mq.sdk.processor.DemoProcessor",
+    	"executionPool":{"minSize":5,"waitSize":1,"maxSize":20,"keepAliveTime":1000}
+    }
+  ]
+}
