@@ -74,7 +74,7 @@ public class DemoProcessor extends AbstractMessageProcessor {
 
 ```java
 File file = new File("你的配置文件地址");
-com.mh.aliyun.mq.sdk.config.AliyunMQConfigReader.AliyunMQConfigReader.initConfig(file);
+com.mh.aliyun.mq.sdk.config.AliyunMQConfigReader.initConfig(file);
 ```
 - 初始化SDK运行时环境,初始化成功就表明监听器开始工作了
 
@@ -110,7 +110,7 @@ com.mh.aliyun.mq.sdk.setup.AliyunMQManager
 		//如果配置配置默认监听器初始化的时候不启动，那么后续我们可以通过代码手动启动
 		AliyunMQManager.startListener("L003");
 		//手动停止监听器的所有线程
-		AliyunMQManager.startListener("L003");
+		AliyunMQManager.stopListener("L003");
 		//除了配置文件配置的线程数量，还可以动态添加线程数量
 		String threadId = AliyunMQManager.addOneListenerThread("L003");
 		//根据线程ID动态减少线程数量
