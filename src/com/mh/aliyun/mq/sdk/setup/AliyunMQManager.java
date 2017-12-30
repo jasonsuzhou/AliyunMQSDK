@@ -30,9 +30,13 @@ public class AliyunMQManager {
 		System.setProperty("ons.client.logLevel ", configure.getLogLevel());
 		List<TopicMeta> listTopic = configure.getTopics();
 		if (listTopic != null && !listTopic.isEmpty()) {
+			ConsumerMeta consumerMeta = null;
 			for (TopicMeta topic : listTopic) {
-				topic.getConsumers().setTopicName(topic.getName());
-				hmConsumerMeta.put(topic.getConsumers().getId(), topic.getConsumers());
+				consumerMeta = topic.getConsumers();
+				if (consumerMeta != null) {
+					consumerMeta.setTopicName(topic.getName());
+					hmConsumerMeta.put(topic.getConsumers().getId(), topic.getConsumers());
+				}
 				initProducers(topic.getProducer(), topic.getName());
 			}
 		}
@@ -144,7 +148,7 @@ public class AliyunMQManager {
 
 	private static void initListeners(Map<String, ConsumerMeta> hmConsumer) {
 		List<ListenerMeta> listListenerMeta = AliyunMQConfigReader.getListenerList();
-		if (!listListenerMeta.isEmpty()) {
+		if (listListenerMeta!= null && !listListenerMeta.isEmpty()) {
 			ConsumerMeta consumerMeta = null;
 			for (ListenerMeta listenerMeta : listListenerMeta) {
 				hmListenerMeta.put(listenerMeta.getId(), listenerMeta);
@@ -162,8 +166,10 @@ public class AliyunMQManager {
 	}
 
 	private static void initProducers(ProducerMeta producer, final String topicName) {
-		AliyunMQMsgSender sender = new AliyunMQMsgSender(producer, topicName);
-		AliyunMQMsgSenderFactory.putSender(producer.getId(), sender);
+		if (producer != null) {
+			AliyunMQMsgSender sender = new AliyunMQMsgSender(producer, topicName);
+			AliyunMQMsgSenderFactory.putSender(producer.getId(), sender);
+		}
 	}
 
 	private static void shutdownProducers() {
