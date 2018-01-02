@@ -1,8 +1,10 @@
 package com.mh.aliyun.mq.sdk.config;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import com.aliyun.openservices.shade.com.alibaba.fastjson.JSON;
@@ -19,6 +21,13 @@ public class AliyunMQConfigReader {
 			configure = JSON.parseObject(new String(configBytes), AliyunMQConfigure.class);
 		}
 	}
+	
+	public static synchronized void initConfig(InputStream inputStream) throws IOException {
+		if (configure == null) {
+			String configString = inputStreamTOString(inputStream);
+			configure = JSON.parseObject(configString, AliyunMQConfigure.class);
+		}
+	}
 
 	public static AliyunMQConfigure getConfigure() {
 		return configure;
@@ -33,6 +42,17 @@ public class AliyunMQConfigReader {
 
 	public static boolean hasInit() {
 		return configure != null;
+	}
+	
+	public static String inputStreamTOString(InputStream in) throws IOException {
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		byte[] data = new byte[1024];
+		int count = -1;
+		while ((count = in.read(data, 0, 1024)) != -1)
+			outStream.write(data, 0, count);
+
+		data = null;
+		return new String(outStream.toByteArray(), "utf-8");
 	}
 
 	private static byte[] getContent(File file) throws IOException {

@@ -89,7 +89,7 @@ public class AliyunMQMsgSender {
 
 	private void initProducer() {
 		Properties properties = new Properties();
-		properties.put(PropertyKeyConst.ProducerId, producerMeta.getId());
+		properties.put(PropertyKeyConst.ProducerId, producerMeta.getName());
 		properties.put(PropertyKeyConst.AccessKey, AliyunMQConfigReader.getConfigure().getAccessKey());
 		properties.put(PropertyKeyConst.SecretKey, AliyunMQConfigReader.getConfigure().getSecretKey());
 		properties.put(PropertyKeyConst.SendMsgTimeoutMillis, producerMeta.getSendMsgTimeoutMillis());
