@@ -124,3 +124,6 @@ com.mh.aliyun.mq.sdk.setup.AliyunMQManager
 
 ## TODO
 - 可以单独暂停某个监听器线程不去接收消息
+
+##Update History
+- 2018-06-01 利用apache commons pool2提供的组件实现了任务池

@@ -31,7 +31,6 @@ public class AliyunMQMsgSender {
 		} catch (Throwable e) {
 			result = retrySendMessage(msg, producerMeta.getRetryTimes());
 		}
-
 		return result;
 	}
 
