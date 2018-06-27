@@ -127,3 +127,6 @@ com.mh.aliyun.mq.sdk.setup.AliyunMQManager
 
 ## Update History
 - 2018-06-01 利用apache commons pool2提供的组件实现了任务池
+
+## Note
+- 2018-06-27 16:27 到 2018-06-27 17:40 左右阿里云消息队列宕机了
