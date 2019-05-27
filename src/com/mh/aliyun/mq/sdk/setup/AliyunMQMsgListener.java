@@ -46,9 +46,10 @@ public class AliyunMQMsgListener {
 			return;
 		}
 		Properties properties = new Properties();
-		properties.put(PropertyKeyConst.ConsumerId, consumerMeta.getName());
+		properties.put(PropertyKeyConst.GROUP_ID, consumerMeta.getName());
 		properties.put(PropertyKeyConst.AccessKey, AliyunMQConfigReader.getConfigure().getAccessKey());
 		properties.put(PropertyKeyConst.SecretKey, AliyunMQConfigReader.getConfigure().getSecretKey());
+		properties.put(PropertyKeyConst.NAMESRV_ADDR, AliyunMQConfigReader.getConfigure().getAccessUrl());
 		final String topicName = this.consumerMeta.getTopicName();
 		final String tag = consumerMeta.getTag();
 		consumer = ONSFactory.createConsumer(properties);

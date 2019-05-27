@@ -88,10 +88,11 @@ public class AliyunMQMsgSender {
 
 	private void initProducer() {
 		Properties properties = new Properties();
-		properties.put(PropertyKeyConst.ProducerId, producerMeta.getName());
+		properties.put(PropertyKeyConst.GROUP_ID, producerMeta.getName());
 		properties.put(PropertyKeyConst.AccessKey, AliyunMQConfigReader.getConfigure().getAccessKey());
 		properties.put(PropertyKeyConst.SecretKey, AliyunMQConfigReader.getConfigure().getSecretKey());
 		properties.put(PropertyKeyConst.SendMsgTimeoutMillis, producerMeta.getSendMsgTimeoutMillis());
+		properties.put(PropertyKeyConst.NAMESRV_ADDR, AliyunMQConfigReader.getConfigure().getAccessUrl());
 		producer = ONSFactory.createProducer(properties);
 		producer.start();
 	}
